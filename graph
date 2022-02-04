@@ -1,0 +1,59 @@
+def durum():
+    import random
+    import matplotlib
+    from matplotlib import animation
+    import matplotlib.pyplot as plt
+    from matplotlib.animation import FuncAnimation
+    from itertools import count
+    import numpy as np
+    a=list(np.linspace(1,4,50))
+    b=list(np.linspace(100,0,50))
+    c=list(np.linspace(35,100,50))
+    l3 = [90,98,90,100,98]*10
+    l2=c.copy()
+    l1=b.copy()
+    xval=a.copy()
+
+    %matplotlib qt
+
+    fig=plt.figure(figsize=(9,9),dpi=150)
+    axes=fig.add_axes([0.15,0.2,0.8,0.7])
+    #eksen2=figure2.add_axes([0.3,0.5,0.5,0.5])
+
+    #fig, axes = plt.subplots(nrows = 1, ncols = 1, figsize = (10,5))
+    font1 = {'family':'serif','color':'#54002d','size':30}
+    font2 = {'family':'serif','color':'#54002d','size':30}
+    font3 = {'family':'serif','color':'#54002d','size':40}
+
+    plt.style.use("ggplot")
+    axes.set_ylim(0, 100)
+    axes.set_xlim(1,4)
+    x1,y1 = [], []
+    x2,y2 = [], []
+    x3,y3 = [], []
+    #xval = [0,1.1,1.5,2,3,3.5,3.96]
+
+    axes.set_xlabel("Sınıf",fontdict = font2,loc="right")
+    axes.set_ylabel("(%)", fontdict = font3)
+    axes.set_title("Durum Değerlendirmesi",fontdict = font1,loc="left")
+    def animate(i):
+        x1.append(xval[i])
+        y1.append((l1[i]))
+        x2.append(xval[i])
+        y2.append((l2[i]))
+        x3.append(xval[i])
+        y3.append((l3[i]))
+        axes.plot(x1,y1,color="#f5f0f7",linewidth=8555)
+        axes.plot(x1,y1, color="blue",marker="*",mec="blue",mfc="w",ms=20,label="mutluluk")
+        axes.plot(x2,y2, color="#9d8953",marker="",mec="#27CEB0",mfc="w",alpha=0.9,ms=10,linewidth=3,label="Gelecek Kaygısı")
+        axes.plot(x3,y3, color="k",marker="",mec="r",mfc="w",ms=10,linewidth=5,label="Emek")
+        #axes.legend()
+    axes.plot(x1,y1, color="blue",marker="*",mec="blue",mfc="w",ms=10,label="Umut")
+    axes.plot(x2,y2, color="#9d8953",marker="",mec="#0100fd",mfc="w",ms=10,label="Gelecek Kaygısı")
+    axes.plot(x3,y3, color="k",marker="",mec="r",mfc="w",ms=10,label="Emek")
+
+    axes.plot(x3,y3,linestyle=":",color="k",marker="",mec="r",mfc="k",ms=15,label="\noguz.tzlk\n#Python")
+    axes.legend(loc=3)
+    anim = FuncAnimation(fig, animate, interval=500)
+    plt.show()
+    return anim
