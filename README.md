@@ -1,2 +1,2 @@
-# durum1
+Genel durum özeti
  
