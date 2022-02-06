@@ -1,2 +1,1 @@
-Genel durum özeti
- 
+.
